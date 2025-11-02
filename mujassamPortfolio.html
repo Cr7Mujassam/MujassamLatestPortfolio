@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mujassam Taukir Khan — Backend Developer</title>
+  <meta name="description" content="Portfolio of Mujassam Taukir Khan — Java Backend Developer (Spring Boot, Hibernate, Redis, Kafka)" />
+  <style>
+    /* --- Reset & base --- */
+    :root{
+      /* Color Palette Refined */
+      --bg:#080d12; /* Slightly deeper background */
+      --card:#10151c; /* Main card background */
+      --card-hover:#161d25; /* Darker on hover */
+      --muted:#9aa4b2;
+      --text:#e6eef6;
+      --accent:#7c3aed; /* Violet/Purple */
+      --accent-2:#0ea5a4; /* Teal */
+      --glass: rgba(255,255,255,0.04);
+      --shadow-primary: 0 10px 30px rgba(0,0,0,0.8);
+      --shadow-secondary: 0 4px 10px rgba(0,0,0,0.4);
+    }
+    *, *::before, *::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    html,body{
+      min-height:100%;
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,Arial;
+      color:var(--text);
+      background:var(--bg);
+      -webkit-font-smoothing:antialiased;
+      line-height:1.6;
+      font-size:17px; /* Base font size increase */
+    }
+    a{color:var(--accent);text-decoration:none;transition:color 0.2s}
+    a:hover{color:var(--text)}
+
+    /* Layout & General Elements */
+    .container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem}
+    section{margin-top:3rem}
+    h2{font-size:32px;margin:0}
+    h3{margin:0 0 1rem 0;font-size:24px;border-bottom:2px solid var(--accent-2);padding-bottom:5px;display:inline-block}
+    
+    /* Typing effect and cursor styling */
+    #typing-hero-text {
+      min-height: 44px; /* Ensure space while empty/typing */
+      /* Base style for the cursor */
+      border-right: 3px solid var(--accent);
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block; /* Crucial for cursor placement */
+      font-weight: 800; /* Matching the intro h2 style */
+      background: linear-gradient(45deg, var(--text), var(--accent));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    
+    .cursor-blink {
+        /* Blinking animation that pauses when typing/erasing */
+        animation: blink-cursor 0.75s step-end infinite;
+    }
+    
+    .cursor-typing {
+        /* Temporarily remove the blinking animation while text is moving */
+        animation: none !important;
+    }
+
+    @keyframes blink-cursor {
+        from, to { border-color: transparent }
+        50% { border-color: var(--accent) }
+    }
+    /* END Typing STYLING */
+
+    /* Header & Navigation */
+    header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:10px}
+    .brand{display:flex;align-items:center;gap:16px}
+    .avatar{width:72px;height:72px;border-radius:999px;overflow:hidden;border:3px solid var(--accent);box-shadow:var(--shadow-primary)}
+    /* Placeholder for Avatar - Replace with your actual image URL */
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    h1{font-size:20px;margin:0}
+    .meta-small{color:var(--muted);font-size:14px}
+    nav{display:flex;gap:20px}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:5px 0;transition:color 0.2s, transform 0.2s}
+    nav a:hover{color:var(--text);transform:translateY(-2px)}
+
+    /* Cards - Unified Styling */
+    .card{
+      background:var(--card);
+      border-radius:12px;
+      padding:24px;
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow:var(--shadow-secondary);
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .interactive-card:hover{
+      background:var(--card-hover);
+      transform:translateY(-3px);
+      box-shadow:var(--shadow-primary);
+    }
+
+    /* Hero Section */
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:3rem;align-items:start;margin-top:3rem}
+    .intro h2{font-size:36px;font-weight:800;/* No color definition here, handled by #typing-hero-text for gradient effect */}
+    .lead{color:var(--muted);margin-top:1rem;font-size:18px}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.25rem}
+    .chip{background:var(--glass);padding:8px 14px;border-radius:999px;font-weight:600;color:var(--muted);font-size:13px;border:1px solid rgba(124,58,237,0.15)}
+    .cta{margin-top:1.5rem;display:flex;gap:16px}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 20px;
+      border-radius:12px;
+      background:linear-gradient(90deg,var(--accent-2),var(--accent));
+      color:var(--bg); /* Dark text on bright button */
+      font-weight:800;
+      text-decoration:none;
+      box-shadow:0 6px 15px rgba(124,58,237,0.4);
+      transition:transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(124,58,237,0.6)}
+    .btn.alt{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.1);
+      color:var(--muted);
+      box-shadow:none;
+    }
+    .btn.alt:hover{color:var(--text);border-color:var(--accent);transform:translateY(-2px)}
+
+    /* Sidebar Content */
+    .side .contact-item{display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:center;margin-bottom:10px;font-size:15px}
+    .side strong{color:var(--text);font-weight:600}
+    .side .meta{color:var(--muted)}
+
+    /* Experience & Grids */
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:1rem}
+    .job{
+      padding:16px;
+      border-radius:10px;
+      background:var(--card);
+      border:1px solid rgba(255,255,255,0.04);
+      transition:transform 0.3s, background 0.3s;
+    }
+    .job h4{margin:0;font-size:18px;color:var(--accent-2)}
+    .job .meta{color:var(--muted);font-size:13px;margin-top:6px}
+    .job p{color:var(--muted);margin-top:10px;font-size:15px;line-height:1.5}
+    .achievements-list li{margin-bottom:8px}
+
+    /* Skills list (Used for Skills and Goals) */
+    .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:1rem}
+    .skill-card{padding:16px;border-radius:10px;background:var(--card);border:1px solid rgba(255,255,255,0.04)}
+    .skill-card strong{color:var(--text);font-weight:700;display:block;padding-bottom:5px;border-bottom:1px solid rgba(255,255,255,0.05)}
+    .skill-card ul{margin:10px 0 0 0;padding-left:20px;color:var(--muted);font-size:15px}
+    .skill-card li{margin-bottom:4px}
+
+    /* Projects */
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:1rem}
+    .project{padding:16px;border-radius:10px;background:var(--card);border:1px solid rgba(255,255,255,0.04)}
+    .project strong{color:var(--accent);display:block;margin-bottom:4px}
+    
+    /* DSA Button Specific Styling for mobile (to ensure they wrap well) */
+    .dsa-links .btn {
+      flex: 1 1 auto; /* Allows buttons to grow and shrink */
+      min-width: 180px; /* Minimum width to prevent crushing */
+      justify-content: center;
+    }
+
+
+    /* Contact Form Styling - Inputs Made Significantly Bigger */
+    .contact-card{display:flex;gap:24px;padding:30px;border-radius:12px;background:var(--card);border:1px solid rgba(255,255,255,0.06)}
+    .contact-left{min-width:300px}
+    .contact-info p{color:var(--muted);margin:10px 0}
+    .form-row{display:flex;gap:12px}
+    
+    /* Input field sizing */
+    .form-control{
+      width:100%;
+      padding:16px; 
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:var(--bg);
+      color:var(--text);
+      font-size:18px; 
+    }
+    .form-control:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px rgba(124,58,237,0.4)}
+    
+    textarea.form-control{min-height:180px;resize:vertical} /* Increased min-height for message box */
+    
+    /* Button sizing */
+    .btn-send{
+      background:var(--accent);
+      border:none;
+      color:var(--bg);
+      padding:16px 24px; 
+      border-radius:10px;
+      font-weight:700;
+      cursor:pointer;
+      transition:background 0.2s;
+    }
+    .btn-send:hover{background:var(--accent-2)}
+
+    footer{margin-top:4rem;color:var(--muted);text-align:center;padding-bottom:40px;font-size:14px}
+
+    /* Scroll Reveal & Animations */
+    .fade-up{opacity:0;transform:translateY(20px);transition:all .8s cubic-bezier(.2,.9,.2,1)}
+    .in-view{opacity:1;transform:none}
+
+    /* --- RESPONSIVENESS (Mobile First) --- */
+
+    /* Tablet (980px and under) */
+    @media(max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .side{margin-top:2rem}
+    }
+    @media(max-width:768px){
+      .container{padding:1.5rem 1rem}
+      header{flex-direction:column;align-items:flex-start}
+      nav{margin-top:15px;gap:14px;flex-wrap:wrap}
+      h2{font-size:30px}
+      .grid-3, .skills-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+      .contact-card{flex-direction:column;padding:20px}
+      .contact-left{min-width:auto}
+      .form-row{flex-direction:column;gap:12px}
+      .dsa-links {
+        flex-direction: column;
+        gap: 12px !important;
+      }
+      .dsa-links .btn {
+        min-width: 100%;
+      }
+    }
+    /* Small Mobile (600px and under) */
+    @media(max-width:600px){
+      html,body{font-size:16px}
+      .brand{flex-direction:column;align-items:flex-start;gap:8px}
+      .hero{gap:2rem;margin-top:2rem}
+      .intro h2{font-size:28px}
+      .cta{flex-direction:column;gap:10px}
+      .btn{width:100%;justify-content:center}
+      .grid-3, .skills-grid{grid-template-columns:1fr} /* All to single column */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="avatar">
+          <!-- TODO: Replace this placeholder URL with your actual professional photo! -->
+          <img src="https://placehold.co/72x72/7c3aed/080d12?text=MTK" alt="Mujassam Taukir Khan Photo">
+        </div>
+        <div>
+          <h1>Mujassam Taukir Khan</h1>
+          <div class="meta-small">Backend Developer — Java · Spring Boot · Kafka · Redis</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#dsa-practice">DSA</a> <!-- NEW NAV LINK -->
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div class="card intro fade-up">
+          <!-- The text is now empty and will be filled by the typing script -->
+          <h2 class="intro-heading">
+            <span id="typing-hero-text" class="cursor-blink"></span>
+          </h2>
+          
+          <p class="lead">Java backend engineer focused on reliable, scalable microservices for **payments and financial systems**. Experienced with Spring Boot, Hibernate, Redis caching and Kafka streaming.</p>
+
+          <div class="chips">
+            <div class="chip">Java (Core & 17+)</div>
+            <div class="chip">Spring Boot</div>
+            <div class="chip">Hibernate / JPA</div>
+            <div class="chip">Redis</div>
+            <div class="chip">Apache Kafka</div>
+            <div class="chip">Microservices</div>
+            <div class="chip">Linux</div>
+            <div class="chip">Git/GitLab</div>
+          </div>
+
+          <div class="cta">
+            <a class="btn" href="#contact">Contact Me</a>
+            <!-- *** IMPORTANT: Update the href value below with the EXACT filename of your PDF resume. *** -->
+            <a class="btn alt" href="[Your_Actual_Resume_Filename.pdf]" download>Download Resume</a>
+          </div>
+
+          <section id="about" style="margin-top:1.5rem">
+            <h3>About Me</h3>
+            <p class="meta-small">I build robust and performant backend systems used in high-throughput financial applications. My primary focus is on designing and deploying scalable microservices, specializing in low-latency data processing and transactional integrity. I enjoy solving production problems, optimizing database interactions, and mentoring junior developers to foster a strong engineering culture.</p>
+          </section>
+        </div>
+
+        <aside class="side fade-up">
+          <div class="card" style="padding:18px">
+            <h3>Quick Contact</h3>
+            <div class="contact-item"><strong>Phone</strong><div class="meta">+91 72560 83315</div></div>
+            <div class="contact-item"><strong>Email</strong><div class="meta">mujassamtaukirkhan58@gmail.com</div></div>
+            <div class="contact-item"><strong>Location</strong><div class="meta">Sharif Colony Bikhna Pahari Patna</div></div>
+            <div class="contact-item"><strong>Portfolio</strong><div class="meta"><a href="https://github.com/Cr7Mujassam" target="_blank">GitHub Pages</a></div></div>
+            <div style="margin-top:12px;text-align:center">
+              <!-- *** IMPORTANT: Update the href value below with the EXACT filename of your PDF resume. *** -->
+              <a class="btn" href="https://www.linkedin.com/in/mujassam-taukir-khan-a991ab219/" download>Linkedin</a>
+            </div>
+          </div>
+
+          <div class="card" id="education" style="margin-top:1rem;padding:16px">
+            <h3>Education & Certifications</h3>
+            <div class="meta-small">
+              <strong>Bachelor of ECE</strong> — Haldia Institute of Technology (2018–2022)
+            </div>
+            <div style="height:8px"></div>
+            <div class="meta-small">
+              <strong>Certifications:</strong> Core Java (Internshala) · AWS Cloud Practitioner (Amazon Web Services)
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <section id="experience" class="fade-up">
+        <h3>Work Experience</h3>
+        <div class="grid-3" style="margin-top:12px">
+          <div class="job interactive-card">
+            <h4>National Payment Corporation of India (NPCI) — Senior Associate</h4>
+            <div class="meta">Jun 2025 — Present · Hyderabad</div>
+            <p>
+              <!-- TODO: EXPAND: Add 3-4 lines detailing your key responsibilities, specific payment systems (like UPI, IMPS, etc. if allowed), and the technical stack used here. -->
+              Currently focused on scaling and maintaining high-availability payment systems. My role involves platform reliability, optimizing transaction latency, and ensuring compliance for critical national financial infrastructure.
+            </p>
+          </div>
+
+          <div class="job interactive-card">
+            <h4>Cognizant Technology Solutions — Software Engineer</h4>
+            <div class="meta">Jul 2022 — May 2025 · Kolkata</div>
+            <p>
+              Developed and maintained enterprise applications for a major banking client. Primarily utilized **Java 11/17, Spring Boot, and Hibernate** to build RESTful APIs and secure data persistence layers.
+              <!-- TODO: EXPAND: Mention specific modules or systems (e.g., loan processing, customer onboarding, etc.) and specific technical contributions like integrating security layers or complex business logic. -->
+            </p>
+          </div>
+
+          <div class="job interactive-card">
+            <h4>Cognizant Technology Solutions — Intern</h4>
+            <div class="meta">Dec 2021 — Jun 2022 · Kolkata</div>
+            <p>
+              Worked on key financial automation flows like **ONMAGS, BASE, and NACH API**. Focused on implementing microservices components and leveraging **Redis** and **Kafka** integration for asynchronous processing and high throughput.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-top:18px" class="card fade-up">
+          <h4 style="margin:12px 12px 10px 12px;font-size:20px;color:var(--accent-2)">Key Achievements & Impact</h4>
+          <ul class="achievements-list" style="color:var(--muted);padding-left:22px;margin:8px 12px 18px 12px">
+            <li>Led a team of 5 developers to design and implement a new microservices architecture, **improving system scalability by ~30%** and reducing deployment friction.</li>
+            <li>Implemented system optimisations using **Redis caching and Kafka streaming** to reduce transaction latency by **50ms** and increase transaction throughput by **20%**.</li>
+            <li>Lowered transaction decline rates by **~5%** for critical ONMAGS/BASE NACH flows through proactive monitoring and targeted fixes.</li>
+            <li>Conducted comprehensive code reviews and mentored 3 junior engineers, resulting in a **15% reduction in production bugs** from the team's submissions.</li>
+            <!-- TODO: ADD: Aim for 2-3 more metric-driven achievements. -->
+          </ul>
+        </div>
+      </section>
+
+      <section id="skills" class="fade-up">
+        <h3>Technical Skills</h3>
+        <div class="skills-grid" style="margin-top:12px">
+          <div class="skill-card interactive-card">
+            <strong>Core Backend</strong>
+            <ul>
+              <li>Core Java (JDK 17+)</li>
+              <li>Spring Boot & Spring MVC</li>
+              <li>Hibernate / Spring Data JPA</li>
+              <li>Vert.x (Non-blocking I/O)</li>
+            </ul>
+          </div>
+          <div class="skill-card interactive-card">
+            <strong>Data & Messaging</strong>
+            <ul>
+              <li>Redis (Caching & Pub/Sub)</li>
+              <li>Apache Kafka (Streaming/Queue)</li>
+              <li>MySQL & Oracle (Advanced Querying)</li>
+              <li>MariaDB</li>
+            </ul>
+          </div>
+          <div class="skill-card interactive-card">
+            <strong>DevOps & Tools</strong>
+            <ul>
+              <li>Linux (Shell Scripting/Deployment)</li>
+              <li>Git, GitLab, CI/CD Principles</li>
+              <li>Maven & Gradle</li>
+              <li>Docker (Basic Containerization)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEW SECTION: DSA Practice Links -->
+      <section id="dsa-practice" class="fade-up">
+        <h3>DSA Practice & Profiles</h3>
+        <div class="card interactive-card" style="margin-top:12px; padding:24px;">
+            <p class="meta-small" style="margin-bottom:1.5rem;">My dedication to competitive programming and Data Structures & Algorithms ensures I can write efficient, optimized, and robust code for complex financial and business logic.</p>
+            <div class="cta dsa-links" style="margin-top:0; justify-content: space-around; flex-wrap: wrap; gap: 16px;">
+                <a class="btn" href="https://www.geeksforgeeks.org/user/mujassamtaukirkhan58/?_gl=1*1yn8nil*_up*MQ..*_gs*MQ..&gclid=Cj0KCQjwgpzIBhCOARIsABZm7vG8hl6YVsz6eeWbb9_9BIb5fD-LxjOnnkRtS5OMwNk7yIXXbFR-s2MaAgJDEALw_wcB&gbraid=0AAAAAC9yBkBCrxZ4F-uElNyvL-pb8x924" target="_blank" style="background: #2E8B57; box-shadow: 0 4px 10px rgba(46, 139, 87, 0.4);">
+                    GeeksforGeeks
+                </a>
+                <a class="btn" href="https://leetcode.com/u/mujassamtaukirkhan58/" target="_blank" style="background: #FF9900; box-shadow: 0 4px 10px rgba(255, 153, 0, 0.4);">
+                    LeetCode
+                </a>
+                <a class="btn" href="https://www.naukri.com/code360/profile/c2245acc-3c65-46d1-8a1c-c8bf493d824e" target="_blank" style="background: #5A206A; box-shadow: 0 4px 10px rgba(90, 32, 106, 0.4);">
+                    Coding Ninjas
+                </a>
+            </div>
+        </div>
+      </section>
+      <!-- END NEW SECTION -->
+      
+      <section id="projects" class="fade-up">
+        <h3>Personal Projects</h3>
+        <div class="projects" style="margin-top:12px">
+          <div class="project interactive-card">
+            <strong>TRACE NXT (Internal Tool)</strong>
+            <p class="meta-small">
+              Internal testing and monitoring tool to simulate and validate complex payment flows (OnMags, BASE, NACH). Developed API mocking capabilities using **Mockito** to ensure robust integration testing.
+            </p>
+            <!-- TODO: ADD: Link to an internal demo description (if allowed) or repository. -->
+          </div>
+          <div class="project interactive-card">
+            <strong>Payment Gateway Microservices POC</strong>
+            <p class="meta-small">
+              A Proof of Concept for a high-volume payment processor built with **Spring Boot and Kafka**. Implements the Saga pattern for distributed transaction management and utilizes **Redis** for stateful caching.
+              <!-- TODO: ADD: Link to GitHub Repository. -->
+            </p>
+          </div>
+          <div class="project interactive-card">
+            <strong>[Your Third Project Here]</strong>
+            <p class="meta-small">
+              <!-- TODO: ADD: Details for a third personal project (e.g., a data pipeline, a utility, or an open-source contribution) using a different part of your stack like Vert.x or a specific DB. -->
+              A third project description needs to be added here. Focus on the technology and the problem it solved.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="fade-up">
+        <h3>Get in Touch</h3>
+        <div class="contact-card" style="margin-top:12px">
+          <div class="contact-left">
+            <h4>Let's connect</h4>
+            <div class="contact-info">
+              <p>I'm currently open to new Senior Backend Developer roles focused on scaling high-throughput financial systems. Feel free to connect regarding job opportunities, technical collaborations, or just to chat about Java and system design.</p>
+              <p><strong>Phone:</strong> +91 72560 83315</p>
+              <p><strong>Email:</strong> <a href="mailto:mujassamtaukirkhan58@gmail.com">mujassamtaukirkhan58@gmail.com</a></p>
+            </div>
+          </div>
+          <div style="flex:1">
+            <form id="contactForm">
+              <div class="form-row">
+                <input class="form-control" id="name" placeholder="Your name" required>
+                <input class="form-control" id="email" placeholder="Your email" type="email" required>
+              </div>
+              <div style="height:12px"></div>
+              <textarea class="form-control" id="message" placeholder="Your message" required></textarea>
+              <div style="height:12px"></div>
+              <div style="display:flex;justify-content:flex-end">
+                <button class="btn-send" type="submit">Send Message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        Built with ♥ — <strong>Mujassam Taukir Khan</strong> · Last updated: Nov 3, 2025
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // --- Typing Effect Loop Implementation ---
+    const targetText = "Hi — I'm Mujassam.";
+    const typeTargetElement = document.getElementById('typing-hero-text');
+    const typeSpeed = 70; // ms per character for typing
+    const eraseSpeed = 40; // ms per character for erasing
+    const pauseDelay = 2000; // ms pause after typing/erasing
+
+    let typingStarted = false;
+
+    // Starts the continuous loop: Type -> Pause -> Erase -> Pause -> Repeat
+    function startTypingLoop() {
+        if (!typeTargetElement) return;
+
+        typeTargetElement.classList.add('cursor-typing');
+        typeWriter(targetText, () => {
+            // Pause after typing is finished
+            setTimeout(() => {
+                typeTargetElement.classList.remove('cursor-typing');
+                typeTargetElement.classList.add('cursor-blink');
+                
+                // Erase after pause
+                setTimeout(() => {
+                    typeTargetElement.classList.remove('cursor-blink');
+                    typeTargetElement.classList.add('cursor-typing');
+                    eraseWriter(() => {
+                        // Loop back to start after erase and another pause
+                        setTimeout(startTypingLoop, pauseDelay);
+                    });
+                }, pauseDelay);
+            }, typeSpeed); // Small pause to ensure the last character is visible before erase starts
+        });
+    }
+
+    // Function to progressively type the text
+    function typeWriter(text, callback) {
+        let i = 0;
+        function typing() {
+            if (i < text.length) {
+                typeTargetElement.textContent += text.charAt(i);
+                i++;
+                setTimeout(typing, typeSpeed);
+            } else {
+                callback();
+            }
+        }
+        typing();
+    }
+
+    // Function to progressively erase the text (backspace effect)
+    function eraseWriter(callback) {
+        let currentText = typeTargetElement.textContent;
+        function erasing() {
+            if (currentText.length > 0) {
+                currentText = currentText.substring(0, currentText.length - 1);
+                typeTargetElement.textContent = currentText;
+                setTimeout(erasing, eraseSpeed);
+            } else {
+                callback();
+            }
+        }
+        erasing();
+    }
+
+
+    // Scroll reveal using IntersectionObserver
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('in-view');
+          
+          // Trigger the typing loop when the 'intro' card appears for the first time
+          if (e.target.classList.contains('intro') && !typingStarted) {
+            typingStarted = true; // Set flag to prevent rerunning
+            startTypingLoop();
+          }
+
+          io.unobserve(e.target);
+        }
+      })
+    },{threshold:0.15}); // Increased threshold for better triggering on mobile
+    document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+
+    // Simple contact form mailto fallback
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      
+      const showModal = (msg) => {
+        // Simple, non-blocking message box replacement for alert()
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+          position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+          background: var(--card); color: var(--text); padding: 20px 30px;
+          border-radius: 12px; z-index: 1000; box-shadow: var(--shadow-primary);
+          border: 1px solid var(--accent); max-width: 80%; text-align: center;
+          font-size: 16px;
+        `;
+        modal.innerHTML = `<p>${msg}</p><button onclick="this.parentNode.remove()" style="margin-top:10px; padding: 8px 16px; background: var(--accent); border: none; border-radius: 8px; color: var(--bg); font-weight: bold; cursor: pointer;">Close</button>`;
+        document.body.appendChild(modal);
+      };
+
+      if(!name||!email||!message){
+        showModal('Please complete all fields.');
+        return
+      }
+      
+      // Use mailto link generation
+      const subject = encodeURIComponent('Portfolio contact from ' + name);
+      const body = encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')');
+      window.location.href = `mailto:mujassamtaukirkhan58@gmail.com?subject=${subject}&body=${body}`;
+      
+      showModal('Thank you! Your email client should open shortly to send your message.');
+    });
+  </script>
+</body>
+</html>
